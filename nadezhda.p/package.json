@@ -1,0 +1,11 @@
+{
+  "name": "nadezhda.p",
+  "version": "1.0.0",
+  "description": "game of lif",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nadejda",
+  "license": "ISC"
+}
