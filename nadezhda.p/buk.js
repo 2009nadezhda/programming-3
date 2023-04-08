@@ -1,5 +1,5 @@
 let LivingCreature = require('./LivingCreature')
-
+//fgghtf
 module.exports = class Buk extends LivingCreature{
     constructor(x, y,index) {
         super(x,y,index)
