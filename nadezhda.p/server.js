@@ -72,7 +72,7 @@ matrix = generator(30 ,18, 15, 8, 5, 5, 8);
 
  
 
- io.sockets.emit('send matrix', matrix)
+ io.sockets.emit("send matrix", matrix)
 
 grassArr = [];
 grassEaterArr = [];
@@ -176,3 +176,20 @@ io.on('connection', function () {
 
 
 
+
+
+
+var statistics = {}
+
+setInterval(function(){
+    statistics.grass = grassArr.length
+    statistics.GrassEater = grassEaterArr.length
+    statistics.buk = bukArr.length
+    statistics.draf = drafArr.length
+    statistics.hut = hutArr.length
+    statistics.predator = predatorArr.length
+
+fs.writeFile("statistics.json", JSON.stringify(statistics),function(){
+      console.log("statistics");
+})
+},1000)

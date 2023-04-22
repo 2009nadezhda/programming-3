@@ -57,4 +57,4 @@ function nkarel(matrix) {
 
 }
 
-socket.on('send matrix', nkarel)
+socket.on("send matrix", nkarel)
