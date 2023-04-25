@@ -156,27 +156,87 @@ function game() {
 }
 
     
-setInterval(game,300)
+setInterval(game,500)
    
-io.on('connection', function () {
+
+
+function addGrass(){
+    for(let i = 0 ; i < 4 ; i++){
+        var x = Math.floor(Math.random() * matrix[0].length)
+        var y = Math.floor(Math.random() * matrix.length)
+                matrix[y][x] = 1
+             var gr = new Grass(x,y)
+             grassArr.push(gr)
+
+    }
+}
+
+function addGrassEater(){
+    for(let i = 0 ; i < 2 ; i++){
+        var x = Math.floor(Math.random() * matrix[0].length)
+        var y = Math.floor(Math.random() * matrix.length)
+                matrix[y][x] = 2
+             var grEat = new GrassEater(x,y)
+             grassEaterArr.push(grEat)
+
+    }
+
+}
+
+function addBuk(){
+    for(let i = 0 ; i < 5 ; i++){
+        var x = Math.floor(Math.random() * matrix[0].length)
+        var y = Math.floor(Math.random() * matrix.length)
+                matrix[y][x] = 3
+             var buk = new Buk(x,y)
+             bukArr.push(buk)
+
+    }
+} 
+
+function addDraf(){
+    for(let i = 0 ; i < 4 ; i++){
+        var x = Math.floor(Math.random() * matrix[0].length)
+        var y = Math.floor(Math.random() * matrix.length)
+                matrix[y][x] = 4
+             var draf = new Draf(x,y)
+             drafArr.push(draf)
+
+   }
+}
+
+function addHut(){
+    for(let i = 0 ; i < 4 ; i++){
+        var x = Math.floor(Math.random() * matrix[0].length)
+        var y = Math.floor(Math.random() * matrix.length)
+                matrix[y][x] = 5
+             var hut = new Hut(x,y)
+             hutArr.push(hut)
+
+   }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+io.on('connection', function (socket) {
     createObject()
+    socket.on("addGrass",addGrass)
+    socket.on("addGrassEater",addGrassEater)
+    socket.on("addBuk",addBuk)
+    socket.on("addDraf",addDraf)
+    socket.on("addHut",addHut)
+    socket.on("addPredator",addPredator)
+
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 var statistics = {}
@@ -190,6 +250,8 @@ setInterval(function(){
     statistics.predator = predatorArr.length
 
 fs.writeFile("statistics.json", JSON.stringify(statistics),function(){
-      console.log("statistics");
+    //   console.log("statistics");
 })
 },1000)
+
+

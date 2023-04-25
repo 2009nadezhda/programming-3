@@ -58,3 +58,33 @@ function nkarel(matrix) {
 }
 
 socket.on("send matrix", nkarel)
+
+
+function addGrass(){
+    socket.emit("addGrass")
+}
+
+
+function addGrassEater(){
+    socket.emit("addGrassEater")
+}
+
+function addBuk(){
+    socket.emit("addBuk")
+}
+
+function addDraf(){
+    socket.emit("addDraf")
+}
+
+
+function addHut(){
+    socket.emit("addHut")
+}
+
+function addPredator(){
+    socket.emit("addPredator")
+}
+
+
+
