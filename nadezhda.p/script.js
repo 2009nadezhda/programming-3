@@ -84,6 +84,10 @@ function addHut(){
 
 function addPredator(){
     socket.emit("addPredator")
+} 
+
+function kill(){
+    socket.emit("kill")
 }
 
 

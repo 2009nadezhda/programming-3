@@ -4,6 +4,7 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var fs = require("fs");
+const Predator = require('./predator');
 
 app.use(express.static("."));
 
@@ -85,7 +86,7 @@ Grass = require("./grass")
 GrassEater = require("./grassEater")
 Buk = require("./buk")
 Draf = require("./draf")
-Predator = require("./predator")
+predator = require("./predator")
 Hut = require("./hut");
 
 
@@ -157,6 +158,22 @@ function game() {
 
     
 setInterval(game,500)
+
+///
+
+function kill() {
+    grassArr = [];
+    grassEaterArr = [];
+    predatorArr = [];
+    bukArr = [];
+    hutArr = [];
+    drafArr = []; 
+    for (var y = 0; y < matrix.length; y++) {
+        for (var x = 0; x < matrix[y].length; x++) {
+            matrix[y][x] = 0;
+        }
+    }
+}
    
 
 
@@ -218,7 +235,17 @@ function addHut(){
 }
 
 
+function addPredator(){
+    for(let i = 0 ; i < 6 ; i++){
+        var x = Math.floor(Math.random() * matrix[0].length)
+        var y = Math.floor(Math.random() * matrix.length)
+                matrix[y][x] = 6
+             var prd = new predator(x,y)
+             predatorArr.push(prd)
 
+   }
+
+}
 
 
 
@@ -235,7 +262,7 @@ io.on('connection', function (socket) {
     socket.on("addDraf",addDraf)
     socket.on("addHut",addHut)
     socket.on("addPredator",addPredator)
-
+    socket.on("kill", kill)
 })
 
 
@@ -250,8 +277,13 @@ setInterval(function(){
     statistics.predator = predatorArr.length
 
 fs.writeFile("statistics.json", JSON.stringify(statistics),function(){
-    //   console.log("statistics");
+       // console.log("statistics");
 })
 },1000)
+
+
+
+
+
 
 
