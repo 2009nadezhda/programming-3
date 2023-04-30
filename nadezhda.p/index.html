@@ -5,18 +5,82 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
    <title>Document</title>
+   <style>
+      body{
+         background: linear-gradient(#e66465, #9198e5);
+      }
+      canvas{
+        margin-left: 30%;
+      }
+      .char{
+         display: flex;
+         justify-content: space-between;
+         margin-bottom: 100px;
+         width: max-content;
+         height: 60px;
+      }
+
+      .weath{
+         display: flex;
+         justify-content: space-between;
+         margin-bottom: 20px;
+
+         width: max-content;
+         height: 60px
+      }
+
+      button{
+         margin-left: 30px;
+      
+      }
+               
+      .btn-grad {
+            background-image: linear-gradient(to right, #2b5876 0%, #8cff00  51%, #2b5876  100%);
+            margin: 10px;
+            padding: 15px 45px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: white;            
+            box-shadow: 0 0 20px #eee;
+            border-radius: 10px;
+            display: block;
+          }
+
+          .btn-grad:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+          }
+         
+   </style>
 </head>
 <body>
+   <div>
+      <h1 style="margin-bottom: 3px; margin-left: 50%;">GAME OF LIFE</h1>
+      <h2 style="margin-bottom: 3px; margin-left: 50%;"> Petrosyan Nadezhda</h2>
+      <div>
+   
+         <div class="char">
+            <button onclick="kill()"  class="btn-grad">Kill them all</button>
+            <button onclick="addGrass()"  class="btn-grad">addGrass</button>
+            <button onclick="addGrassEater()" class="btn-grad">addGrassEater</button>
+            <button onclick="addBuk()" class="btn-grad">addBuk</button>
+            <button onclick="addDraf()" class="btn-grad">addDraf</button>
+            <button onclick="addHut()" class="btn-grad">addHut</button>
+            <button onclick="addPredator()" class="btn-grad">addPredator</button>
+         </div>
 
-  <button onclick="kill()">Kill them all</button>
-  <button onclick="addGrass()">addGrass</button>
-  <button onclick="addGrassEater()">addGrassEater</button>
-  <button onclick="addBuk()">addBuk</button>
-  <button onclick="addDraf()">addDraf</button>
-  <button onclick="addHut()">addHut</button>
-  <button onclick="addPredator()">addPredator</button>
-  
-  
+         <div class="weath">
+            <button onclick="Summer()" class="btn-grad">Summer</button>
+            <button onclick="Autumn()" class="btn-grad">Autumn</button>
+            <button onclick="Winter()" class="btn-grad">Winter</button>
+            <button onclick="Spring()" class="btn-grad">Spring</button>
+         </div>
+
+
+
 
    <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>

@@ -71,8 +71,6 @@ function generator(matLen, gr, grEat,pred, ht, df, bk) {
 
 matrix = generator(30 ,18, 15, 8, 5, 5, 8);
 
- 
-
  io.sockets.emit("send matrix", matrix)
 
 grassArr = [];
@@ -88,10 +86,6 @@ Buk = require("./buk")
 Draf = require("./draf")
 predator = require("./predator")
 Hut = require("./hut");
-
-
-
-
 
 
 function createObject() {
@@ -126,9 +120,7 @@ function createObject() {
     io.sockets.emit("send matrix", matrix);
 }
 
-
-
-    
+ 
 function game() {
     for (let i in grassArr) {
         grassArr[i].mul();
@@ -156,7 +148,6 @@ function game() {
     
 }
 
-    
 setInterval(game,500)
 
 ///
@@ -247,15 +238,39 @@ function addPredator(){
 
 }
 
+var weath 
 
+function Winter(){
 
+     weath = "winter"
+     io.sockets.emit('Winter', weath)
 
+}
+ 
+function Summer(){
+weath = "summer"
+io.sockets.emit('Summer', weath)
 
+}
 
+function Autumn(){
+weath = "autumn"
+io.sockets.emit('Autumn', weath)
 
+}
+
+function Spring(){
+weath = "spring"
+io.sockets.emit('Spring', weath)
+
+}
 
 io.on('connection', function (socket) {
     createObject()
+    socket.on("spring", Spring);
+    socket.on("summer", Summer);
+    socket.on("autumn", Autumn);
+    socket.on("winter", Winter);
     socket.on("addGrass",addGrass)
     socket.on("addGrassEater",addGrassEater)
     socket.on("addBuk",addBuk)
@@ -263,6 +278,7 @@ io.on('connection', function (socket) {
     socket.on("addHut",addHut)
     socket.on("addPredator",addPredator)
     socket.on("kill", kill)
+
 })
 
 
